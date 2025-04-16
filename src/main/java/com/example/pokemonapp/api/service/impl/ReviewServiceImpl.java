@@ -87,7 +87,7 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new ReviewNotFoundException("Review not found"));
 
-        if(pokemon.getId() != review.getPokemon().getId()){ // Powinno być "equals" ale mamy typ primitywny
+        if(pokemon.getId() != review.getPokemon().getId()){ // // should be equals, but we have primitive type
             throw new ReviewNotFoundException("This review does not belong to this pokemon");
         }
 
@@ -102,7 +102,7 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new ReviewNotFoundException("Review not found"));
 
-        if(pokemon.getId() != review.getPokemon().getId()){
+        if(pokemon.getId() != review.getPokemon().getId()){  // should be equals, but we have primitive type
             throw new ReviewNotFoundException("This review does not belong to this pokemon");
         }
 

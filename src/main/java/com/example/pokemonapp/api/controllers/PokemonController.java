@@ -3,6 +3,7 @@ package com.example.pokemonapp.api.controllers;
 import com.example.pokemonapp.api.dto.pokemon.PokemonDto;
 import com.example.pokemonapp.api.dto.pokemon.PokemonResponse;
 import com.example.pokemonapp.api.service.impl.PokemonServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,13 +37,13 @@ public class PokemonController {
 
     @PostMapping("pokemon/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<PokemonDto> createPokemon(@RequestBody PokemonDto pokemonDto){
+    public ResponseEntity<PokemonDto> createPokemon(@Valid @RequestBody PokemonDto pokemonDto){
         PokemonDto response = pokemonService.createPokemon(pokemonDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PutMapping("pokemon/{id}/update")
-    public ResponseEntity<PokemonDto> updatePokemon(@RequestBody PokemonDto pokemonDto, @PathVariable("id") int pokemonId){
+    public ResponseEntity<PokemonDto> updatePokemon(@Valid @RequestBody PokemonDto pokemonDto, @PathVariable("id") int pokemonId){
         PokemonDto response = pokemonService.updatePokemon(pokemonDto, pokemonId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
