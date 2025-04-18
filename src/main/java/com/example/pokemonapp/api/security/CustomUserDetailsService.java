@@ -16,6 +16,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Klas która pobiera użytkowników z bazy danych, loadUserByUsername() zwraca obiekt UserDetail, który jest potem
+ * używany do stworzenia Authentication a następnie Authentication wrzucany do SecurityContext
+ * */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
