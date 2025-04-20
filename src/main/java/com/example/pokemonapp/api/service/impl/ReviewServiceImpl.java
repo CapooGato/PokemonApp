@@ -44,20 +44,19 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ReviewDto findReviewDetail(int reviewId) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new ReviewNotFoundException("Review not found"));
-
-        return mapToDto(review);
-    }
-
-    @Override
     public List<ReviewDto> getReviewsByPokemonId(int pokemonId) {
         if(!pokemonRepository.existsById(pokemonId)){
             throw new PokemonNotFoundException("Pokemon not found");
         }
         List<Review> reviewList = reviewRepository.findByPokemonId(pokemonId);
         return reviewList.stream().map((r) -> mapToDto(r)).collect(Collectors.toList());
+    }
+    @Override
+    public ReviewDto findReviewDetail(int reviewId) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new ReviewNotFoundException("Review not found"));
+
+        return mapToDto(review);
     }
 
     @Override
